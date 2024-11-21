@@ -1,7 +1,7 @@
 name: pulse
 description: A lightweight and extensible analytics event management library for Flutter.
 version: 0.0.1
-homepage:
+homepage: https://github.com/cesarferreira/pulse
 
 environment:
   sdk: ^3.5.4
