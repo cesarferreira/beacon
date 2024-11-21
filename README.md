@@ -4,7 +4,7 @@
   <img src="assets/lighthouse.jpg" alt="Beacon Lighthouse" width="100%"/>
 </p> -->
 
-A lightweight and extensible Flutter library for managing and logging analytics events across multiple platforms with ease.
+> A lightweight and extensible Flutter library for managing and logging analytics events.
 
 ---
 
