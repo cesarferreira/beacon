@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:pulse/pulse.dart';
 
 import 'package:pulse/pulse_receiver.dart';
 
