@@ -12,6 +12,19 @@ A lightweight and extensible Flutter library for managing and logging analytics 
 - 🛠 **Customizable**: Filter events, add default parameters, and transform data effortlessly.
 - ✅ **Lifecycle Management**: Initialize and shutdown receivers cleanly.
 
+## Packages
+
+### Core Library
+- [`pulse`](./core): Core library for event management.
+
+### Integrations
+- [`pulse_mixpanel`](./integrations/pulse_mixpanel): Mixpanel integration.
+- [`pulse_firebase`](./integrations/pulse_firebase): Firebase integration.
+- [`pulse_amplitude`](./integrations/pulse_amplitude): Amplitude integration.
+
+### Example App
+- [`example`](./example): Demo app showcasing the usage of Pulse.
+
 ---
 
 ## 📖 **Getting Started**

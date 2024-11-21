@@ -1,5 +1,5 @@
 name: pulse
-description: "A new Flutter package project."
+description: A lightweight and extensible analytics event management library for Flutter.
 version: 0.0.1
 homepage:
 
