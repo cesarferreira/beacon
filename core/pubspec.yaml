@@ -1,6 +1,6 @@
-name: pulse
+name: beacon
 description: A lightweight and extensible analytics event management library for Flutter.
-version: 0.0.2
+version: 0.0.1
 homepage: https://github.com/cesarferreira/pulse
 
 environment:

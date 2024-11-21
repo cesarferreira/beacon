@@ -1,4 +1,4 @@
-abstract class PulseReceiver {
+abstract class BeaconReceiver {
   // Initialize the receiver
   void initialize() {}
 

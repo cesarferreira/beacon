@@ -1,4 +1,4 @@
-# **📡 Pulse**
+# **📡 Beacon**
 
 A lightweight and extensible Flutter library for managing and logging analytics events across multiple platforms with ease.
 

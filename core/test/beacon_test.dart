@@ -1,9 +1,9 @@
+import 'package:beacon/beacon.dart';
+import 'package:beacon/beacon_receiver.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pulse/pulse.dart';
-import 'package:pulse/pulse_receiver.dart';
 
 // Mock receiver for testing
-class MockReceiver extends PulseReceiver {
+class MockReceiver extends BeaconReceiver {
   bool wasInitialized = false;
   bool wasShutdown = false;
   List<String> receivedEvents = [];
@@ -42,20 +42,20 @@ void main() {
     });
 
     test('should be a singleton', () {
-      final instance1 = Pulse();
-      final instance2 = Pulse();
+      final instance1 = Beacon();
+      final instance2 = Beacon();
       expect(identical(instance1, instance2), true);
     });
 
     test('register() should initialize receiver', () {
-      Pulse.register(mockReceiver);
+      Beacon.attach(mockReceiver);
       expect(mockReceiver.wasInitialized, true);
     });
 
     test('emit() should send events to registered receivers', () {
-      Pulse.register(mockReceiver);
+      Beacon.attach(mockReceiver);
 
-      Pulse.emit('test_event', params: {'key': 'value'});
+      Beacon.emit('test_event', params: {'key': 'value'});
 
       expect(mockReceiver.receivedEvents, ['test_event']);
       expect(mockReceiver.receivedParams, [
@@ -64,38 +64,38 @@ void main() {
     });
 
     test('emit() should respect shouldProcess filter', () {
-      Pulse.register(mockReceiver);
+      Beacon.attach(mockReceiver);
 
-      Pulse.emit('test_event');
-      Pulse.emit('other_event');
+      Beacon.emit('test_event');
+      Beacon.emit('other_event');
 
       expect(mockReceiver.receivedEvents, ['test_event']);
     });
 
     test('emit() should handle multiple receivers', () {
-      Pulse.register(mockReceiver);
-      Pulse.register(mockReceiver2);
+      Beacon.attach(mockReceiver);
+      Beacon.attach(mockReceiver2);
 
-      Pulse.emit('test_event', params: {'key': 'value'});
+      Beacon.emit('test_event', params: {'key': 'value'});
 
       expect(mockReceiver.receivedEvents, ['test_event']);
       expect(mockReceiver2.receivedEvents, ['test_event']);
     });
 
     test('emit() should handle null params', () {
-      Pulse.register(mockReceiver);
+      Beacon.attach(mockReceiver);
 
-      Pulse.emit('test_event');
+      Beacon.emit('test_event');
 
       expect(mockReceiver.receivedEvents, ['test_event']);
       expect(mockReceiver.receivedParams, [{}]);
     });
 
     test('shutdown() should shutdown all receivers', () {
-      Pulse.register(mockReceiver);
-      Pulse.register(mockReceiver2);
+      Beacon.attach(mockReceiver);
+      Beacon.attach(mockReceiver2);
 
-      Pulse.shutdown();
+      Beacon.shutdown();
 
       expect(mockReceiver.wasShutdown, true);
       expect(mockReceiver2.wasShutdown, true);
@@ -103,7 +103,7 @@ void main() {
 
     // Clean up after each test
     tearDown(() {
-      Pulse.shutdown();
+      Beacon.shutdown();
       // Reset the singleton instance (you'll need to add this method to Pulse)
       // Pulse.reset();
     });

@@ -1,10 +1,8 @@
+import 'package:beacon/beacon_receiver.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-
-import 'package:pulse/pulse_receiver.dart';
-
-// Mock implementation of PulseReceiver for testing
-class MockPulseReceiver extends PulseReceiver {
+// Mock implementation of BeaconReceiver for testing
+class MockPulseReceiver extends BeaconReceiver {
   bool wasInitialized = false;
   bool wasShutdown = false;
   List<String> processedEvents = [];

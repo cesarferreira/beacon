@@ -1,6 +1,6 @@
-import 'package:pulse/pulse_receiver.dart';
+import 'package:beacon/beacon_receiver.dart';
 
-class DebugReceiver implements PulseReceiver {
+class DebugReceiver implements BeaconReceiver {
   @override
   void initialize() {
     print("DebugReceiver initialized");

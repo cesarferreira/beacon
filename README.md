@@ -1,4 +1,4 @@
-# **📡 Pulse**
+# **📡 Beacon**
 
 A lightweight and extensible Flutter library for managing and logging analytics events across multiple platforms with ease.
 
@@ -15,15 +15,15 @@ A lightweight and extensible Flutter library for managing and logging analytics 
 ## Packages
 
 ### Core Library
-- [`pulse`](./core): Core library for event management.
+- [`beacon`](./core): Core library for event management.
 
 ### Integrations
-- [`pulse_mixpanel`](./integrations/pulse_mixpanel): Mixpanel integration.
-- [`pulse_firebase`](./integrations/pulse_firebase): Firebase integration.
-- [`pulse_amplitude`](./integrations/pulse_amplitude): Amplitude integration.
+- [`beacon_mixpanel`](./integrations/beacon_mixpanel): Mixpanel integration.
+- [`beacon_firebase`](./integrations/beacon_firebase): Firebase integration.
+- [`beacon_amplitude`](./integrations/beacon_amplitude): Amplitude integration.
 
 ### Example App
-- [`example`](./example): Demo app showcasing the usage of Pulse.
+- [`example`](./example): Demo app showcasing the usage of Beacon.
 
 ---
 
@@ -31,11 +31,11 @@ A lightweight and extensible Flutter library for managing and logging analytics 
 
 ### Installation
 
-Add `pulse` to your `pubspec.yaml` file:
+Add `beacon` to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  pulse: ^1.0.0
+  beacon: ^1.0.0
 ```
 
 Then, fetch the package:
@@ -48,10 +48,10 @@ flutter pub get
 
 ## 🛠 **Usage**
 
-### Step 1: Import Pulse
+### Step 1: Import Beacon
 
 ```dart
-import 'package:pulse/pulse.dart';
+import 'package:beacon/beacon.dart';
 ```
 
 ### Step 2: Register Analytics Receivers
@@ -66,7 +66,7 @@ void main() async {
   final mixpanel = await Mixpanel.init('YOUR_MIXPANEL_PROJECT_TOKEN');
 
   // Register receivers
-  Pulse.register(MixpanelReceiver(
+  Beacon.attach(MixpanelReceiver(
     mixpanel: mixpanel,
     defaultParams: {
       'app_version': '1.0.0',
@@ -75,7 +75,7 @@ void main() async {
   ));
 
   // Optionally, add a debug receiver for testing
-  Pulse.register(DebugReceiver());
+  Beacon.attach(DebugReceiver());
 
   runApp(MyApp());
 }
@@ -86,9 +86,9 @@ void main() async {
 Log analytics events anywhere in your app:
 
 ```dart
-Pulse.emit('button_click', params: {'button_name': 'example_button'});
+Beacon.emit('button_click', params: {'button_name': 'example_button'});
 
-Pulse.emit('purchase', params: {
+Beacon.emit('purchase', params: {
   'item_id': '12345',
   'price': 19.99,
   'currency': 'USD',
@@ -102,7 +102,7 @@ Shut down all receivers when the app exits:
 ```dart
 @override
 void dispose() {
-  Pulse.shutdown();
+  Beacon.shutdown();
   super.dispose();
 }
 ```
@@ -111,7 +111,7 @@ void dispose() {
 
 ## 📦 **Receivers**
 
-Pulse uses **receivers** to handle events for different analytics platforms.
+Beacon uses **receivers** to handle events for different analytics platforms.
 
 ### Built-in Receivers
 
@@ -120,7 +120,7 @@ Pulse uses **receivers** to handle events for different analytics platforms.
 Logs events to Mixpanel:
 
 ```dart
-Pulse.register(MixpanelReceiver(
+Beacon.attach(MixpanelReceiver(
   mixpanel: mixpanel,
   defaultParams: {
     'app_version': '1.0.0',
@@ -134,15 +134,15 @@ Pulse.register(MixpanelReceiver(
 Logs events to the console for debugging:
 
 ```dart
-Pulse.register(DebugReceiver());
+Beacon.attach(DebugReceiver());
 ```
 
 ### Creating Custom Receivers
 
-Implement the `PulseReceiver` interface to create your own receiver:
+Implement the `BeaconReceiver` interface to create your own receiver:
 
 ```dart
-class MyCustomReceiver implements PulseReceiver {
+class MyCustomReceiver implements BeaconReceiver {
   @override
   void initialize() {
     print("Custom receiver initialized");
@@ -168,7 +168,7 @@ class MyCustomReceiver implements PulseReceiver {
 Register it like any other receiver:
 
 ```dart
-Pulse.register(MyCustomReceiver());
+Beacon.attach(MyCustomReceiver());
 ```
 
 ---
@@ -181,15 +181,15 @@ Run the following command to test the library:
 flutter test
 ```
 
-Example unit test for `Pulse`:
+Example unit test for `Beacon`:
 
 ```dart
 void main() {
-  test('Pulse logs events to all registered receivers', () {
+  test('Beacon logs events to all registered receivers', () {
     final debugReceiver = DebugReceiver();
-    Pulse.register(debugReceiver);
+    Beacon.attach(debugReceiver);
 
-    expect(() => Pulse.emit('test_event'), prints(contains('test_event')));
+    expect(() => Beacon.emit('test_event'), prints(contains('test_event')));
   });
 }
 ```
@@ -198,7 +198,7 @@ void main() {
 
 ## 📖 **API Reference**
 
-### `Pulse` Methods
+### `Beacon` Methods
 
 | Method           | Description                                             |
 |-------------------|---------------------------------------------------------|
@@ -206,7 +206,7 @@ void main() {
 | `emit()`          | Logs an event to all registered receivers.             |
 | `shutdown()`      | Cleans up resources for all receivers.                 |
 
-### `PulseReceiver` Interface
+### `BeaconReceiver` Interface
 
 | Method           | Description                                             |
 |-------------------|---------------------------------------------------------|
@@ -245,7 +245,7 @@ We welcome contributions! Here's how you can help:
 
 For questions or suggestions, feel free to reach out:
 
-- **GitHub**: [Pulse on GitHub](https://github.com/cesarferreira/pulse)
+- **GitHub**: [Beacon on GitHub](https://github.com/cesarferreira/beacon)
 - **Twitter**: [@cesarmcferreira](https://twitter.com/cesarmcferreira)
 
 ---

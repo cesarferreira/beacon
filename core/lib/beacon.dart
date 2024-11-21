@@ -1,22 +1,22 @@
-library pulse;
+library beacon;
 
-import 'package:pulse/pulse_receiver.dart';
+import 'package:beacon/beacon_receiver.dart';
 
-class Pulse {
-  // Private static instance of Pulse
-  static final Pulse _instance = Pulse._internal();
+class Beacon {
+  // Private static instance of Beacon
+  static final Beacon _instance = Beacon._internal();
 
   // Factory constructor to return the singleton instance
-  factory Pulse() => _instance;
+  factory Beacon() => _instance;
 
   // Private constructor
-  Pulse._internal();
+  Beacon._internal();
 
   // List of registered receivers
-  final List<PulseReceiver> _receivers = [];
+  final List<BeaconReceiver> _receivers = [];
 
   /// Registers a new receiver
-  static void register(PulseReceiver receiver) {
+  static void attach(BeaconReceiver receiver) {
     _instance._receivers.add(receiver);
     receiver.initialize();
   }
